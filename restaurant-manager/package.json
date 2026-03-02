@@ -1,34 +1,33 @@
 {
-  "name": "restaurant-manager",
+  "name": "brasa33-restaurant-manager",
   "version": "1.0.0",
-  "description": "Sistema de Gestión de Restaurantes - API Node.js",
-  "main": "src/app.js",
+  "description": "Backend API for Brasa 33 Restaurant Management System",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
-  "keywords": [
-    "restaurant",
-    "management",
-    "crud",
-    "api",
-    "node",
-    "express"
-  ],
-  "author": "",
-  "license": "MIT",
+  "keywords": [],
+  "author": "Braulio Echeverria & IN6AV",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.1",
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "cloudinary": "^2.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.6",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
-    "jest": "^29.5.0",
-    "supertest": "^6.3.3"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "nodemon": "^3.1.11"
   }
 }
