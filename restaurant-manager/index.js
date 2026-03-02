@@ -1,5 +1,6 @@
-/**
- * Punto de entrada de la aplicación
- * index.js
- */
-require('./app');
+import dotenv from 'dotenv';
+import { initServer } from './configs/app.js';
+
+dotenv.config();
+
+initServer();
