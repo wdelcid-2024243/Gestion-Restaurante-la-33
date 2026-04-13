@@ -8,8 +8,13 @@ import { dbConnection } from './db.js';
 import { corsOptions } from './cors.configuration.js';
 import { helmetOptions } from './helmet.configuration.js';
 import { requestLimit } from './rateLimit.configuration.js';
-// application-level helpers from src/middlewares
-import { requestLogger, notFound, errorHandler } from '../src/middlewares';
+import { requestLogger } from '../src/middlewares/requestLogger.js';
+import { notFound } from '../src/middlewares/notFound.js';
+import { errorHandler } from '../src/middlewares/errorHandler.js';
+
+// 🔥 SWAGGER (AGREGADO)
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from '../swagger.js';
 
 const BASE_PATH = '/brasa33/v1';
 
@@ -27,12 +32,19 @@ const middlewares = (app) => {
     app.use(cors(corsOptions));
     app.use(morgan('dev'));
     app.use(helmet(helmetOptions));
-    app.use(requestLimit);
     // log every request when not in production
     app.use(requestLogger);
 };
 
 const routes = (app) => {
+
+    // 🔥 SWAGGER (AGREGADO)
+    app.use(
+        `${BASE_PATH}/docs`,
+        swaggerUi.serve,
+        swaggerUi.setup(swaggerSpec)
+    );
+
     app.get(`${BASE_PATH}/health`, (req, res) =>{
         res.status(200).json({
             status: 'healthy',
