@@ -12,7 +12,6 @@ import { requestLogger } from '../src/middlewares/requestLogger.js';
 import { notFound } from '../src/middlewares/notFound.js';
 import { errorHandler } from '../src/middlewares/errorHandler.js';
 
-// 🔥 SWAGGER (AGREGADO)
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from '../swagger.js';
 
@@ -32,13 +31,11 @@ const middlewares = (app) => {
     app.use(cors(corsOptions));
     app.use(morgan('dev'));
     app.use(helmet(helmetOptions));
-    // log every request when not in production
     app.use(requestLogger);
 };
 
 const routes = (app) => {
 
-    // 🔥 SWAGGER (AGREGADO)
     app.use(
         `${BASE_PATH}/docs`,
         swaggerUi.serve,
@@ -52,7 +49,6 @@ const routes = (app) => {
         })
     })
 
-    // core routes
     app.use(`${BASE_PATH}/restaurants`, restaurantsRouter);
     app.use(`${BASE_PATH}/menu`, menuRouter);
     app.use(`${BASE_PATH}/orders`, ordersRouter);
@@ -60,7 +56,6 @@ const routes = (app) => {
     app.use(`${BASE_PATH}/reports`, reportsRouter);
     app.use(`${BASE_PATH}/reservations`, reservationsRouter);
 
-    // catch-all for undefined routes
     app.use(notFound);
 }
 
@@ -73,7 +68,6 @@ export const initServer = async() => {
         await dbConnection();
         middlewares(app);
         routes(app);
-        // global error handler (must come after routes)
         app.use(errorHandler);
         app.listen(PORT, () => {
             console.log(`Brasa 33 Restaurant Manager API is running successfully`);
