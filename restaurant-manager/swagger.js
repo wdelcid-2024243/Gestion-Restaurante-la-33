@@ -6,7 +6,7 @@ const options = {
     info: {
       title: "API Restaurante",
       version: "1.0.0",
-      description: "Documentación de menú, órdenes y pagos",
+      description: "Documentación de la API del restaurante: menú, órdenes, pagos, reportes, reservaciones y restaurantes",
     },
   },
   apis: ["./src/**/*.js"],
